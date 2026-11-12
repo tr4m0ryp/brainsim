@@ -14,7 +14,7 @@ does the same on matched random graphs.
 brainsim is the connectome track of **MemBrain**, a research programme on
 long-term memory for LLM agents built on how human memory works. The agent
 side ships as the Claude Code plugin
-[lesson-recall](https://github.com/tr4m0ryp/lesson-recall).
+[membrain-claude-plugin](https://github.com/tr4m0ryp/membrain-claude-plugin).
 
 ## What it does
 
@@ -566,12 +566,12 @@ Labels such as F21 or T8 in code comments refer to findings and build tasks of
 the MemBrain design notes; the code states the value and its source next to
 each label.
 
-## Relation to MemBrain and lesson-recall
+## Relation to MemBrain and its Claude Code plugin
 
 MemBrain asks how long-term memory for an LLM agent should work if it took the
 brain seriously. Its agent-side finding is that the right memory is usually
 retrieved and then out-ranked by lookalikes, so the work is in the write path;
-[lesson-recall](https://github.com/tr4m0ryp/lesson-recall) is that part as a
+[membrain-claude-plugin](https://github.com/tr4m0ryp/membrain-claude-plugin) is that part as a
 Claude Code plugin. brainsim is the other half: it tests brain mechanisms on
 measured or statistics-derived wiring before they are carried into the agent.
 The fly mushroom body is the first such test: under the MB rule and this recall
