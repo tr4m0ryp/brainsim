@@ -1,0 +1,108 @@
+{
+ "gate_passed": true,
+ "checks": [
+  {
+   "name": "sugar>baseline",
+   "expected": "MN9(sugar) > MN9(silent)",
+   "observed": "169.3 vs 0.0",
+   "pass": true
+  },
+  {
+   "name": "dose-response",
+   "expected": "MN9 rises with activation frequency",
+   "observed": "50Hz:59.7, 100Hz:88.0, 200Hz:169.3",
+   "pass": true
+  },
+  {
+   "name": "sugar>control",
+   "expected": "MN9(sugar) > MN9(random control)",
+   "observed": "88.0 vs 0.0",
+   "pass": true
+  }
+ ],
+ "engine": "brainsim-torch-cpu",
+ "torch_version": "2.2.2+cu121",
+ "code_version": "ccaa5eed",
+ "connectome_version": "v783",
+ "trials": 3,
+ "conditions_run": [
+  "baseline",
+  "sugar@50/100/200Hz",
+  "random-control@100Hz"
+ ],
+ "n_neurons": 138639,
+ "n_connection_pairs": 15091983,
+ "sugar_mapped": 20,
+ "results": {
+  "baseline": {
+   "mn9_mean": 0.0,
+   "mn9_per_trial": [
+    0,
+    0,
+    0
+   ],
+   "driven_rate_hz_mean": 0.0,
+   "network_spikes_mean": 0.0
+  },
+  "sugar@50": {
+   "mn9_mean": 59.666666666666664,
+   "mn9_per_trial": [
+    36,
+    73,
+    70
+   ],
+   "driven_rate_hz_mean": 47.73333333333333,
+   "network_spikes_mean": 11254.666666666666
+  },
+  "sugar@100": {
+   "mn9_mean": 88.0,
+   "mn9_per_trial": [
+    97,
+    82,
+    85
+   ],
+   "driven_rate_hz_mean": 88.76666666666667,
+   "network_spikes_mean": 16564.666666666668
+  },
+  "sugar@200": {
+   "mn9_mean": 169.33333333333334,
+   "mn9_per_trial": [
+    249,
+    221,
+    38
+   ],
+   "driven_rate_hz_mean": 163.5,
+   "network_spikes_mean": 146553.66666666666
+  },
+  "control@100": {
+   "mn9_mean": 0.0,
+   "mn9_per_trial": [
+    0,
+    0,
+    0
+   ],
+   "driven_rate_hz_mean": 117.60000000000001,
+   "network_spikes_mean": 2623.6666666666665
+  }
+ },
+ "param_mapping": {
+  "v_rest=v_reset": "-52 mV (Shiu v_0 = v_rst)",
+  "v_th": "-45 mV (Shiu)",
+  "tau_mem": "20 ms (Shiu t_mbr)",
+  "tau_syn": "5 ms (Shiu tau; our I is Shiu's g via R=1)",
+  "refractory": "2.2 ms -> 2 steps at dt=1.0",
+  "delay": "1.8 ms -> delay_steps=2 (2.0 ms)",
+  "dt": "1.0 ms forward Euler (Shiu: Brian2 exact linear at 0.1 ms)",
+  "synapse_weight": "0.275 mV x signed 'Excitatory x Connectivity', fp32",
+  "poisson_event": "Bernoulli(r*dt) per driven neuron; event injects 68.75 mV into I (g interpretation; charge = w_syn*f_poi*tau_mem/tau_syn matches Shiu's +68.75 mV v-jump depolarization integral)",
+  "divergences": [
+   "spike reset keeps I (Shiu zeroes g)",
+   "refractory clamps v while I decays/accumulates (Shiu freezes v,g)",
+   "driven neurons keep refractory (Shiu sets rfc=0 for them)",
+   "Bernoulli(r*dt) vs Poisson (<= 2 percent event shortfall)",
+   "Euler dt=1.0 vs Brian2 exact linear dt=0.1"
+  ]
+ },
+ "runtime_s": 93.0,
+ "notes": "Same pre-registered directional checks as Run A (scripts/runA/fly_gate.py, Shiu et al. Brian2, gate_passed=true), re-run on brainsim torch_core, CPU fp32, seeds 1000+t per trial. Directional gate only: current-based synapse without reset-zeroing shifts absolute rates vs Shiu's g-dynamics (see param_mapping.divergences). trials=3 | First attempt used the charge-equivalent event (I_EV=275 mV, gate-attempt-charge-iev275.json): sugar@200 tipped the network into a runaway state (~1.2e6 spikes/trial vs ~2.2e4 at 50 Hz) in which accumulated inhibition suppressed MN9 (56.0 vs 166.7 at 50 Hz), failing dose-response. This run uses the pre-authorized g-dynamics event (I_EV=68.75 mV = w_syn*f_poi added to I exactly like a network synapse), which keeps 200 Hz below the runaway boundary."
+}

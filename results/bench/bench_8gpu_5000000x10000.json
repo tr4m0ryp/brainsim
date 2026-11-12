@@ -1,0 +1,13 @@
+{
+ "n": 5000000,
+ "k": 10000,
+ "steps": 200,
+ "elapsed_s": 31.37132086200006,
+ "steps_per_sec": 6.375249575234146,
+ "spikes": 305007586,
+ "synaptic_events": 3050075860000,
+ "synaptic_events_per_sec": 97224974154.48462,
+ "backend": "torch-cuda-sharded (fp16 weights, nccl)",
+ "world_size": 8,
+ "n_synapses": 50000000000
+}

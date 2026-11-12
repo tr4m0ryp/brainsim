@@ -1,0 +1,66 @@
+{
+ "backend": "torch-cuda-sharded (fp16 weights, nccl)",
+ "world_size": 8,
+ "n_neurons": 5000000,
+ "k": 10000,
+ "n_synapses": 50000000000,
+ "steps": 200,
+ "elapsed_s": 31.37132086200006,
+ "wall_s_per_sim_s": 156.8566043100003,
+ "usd_per_node_hour": 36.0,
+ "usd_per_sim_s": 1.568566043100003,
+ "usd_per_battery_projection": {
+  "h1": {
+   "node_hours": 445.9,
+   "usd": 16052.0
+  },
+  "h2": {
+   "node_hours": 250.7,
+   "usd": 9025.0
+  },
+  "h3": {
+   "node_hours": 455.7,
+   "usd": 16406.0
+  },
+  "total_usd": 41483.0,
+  "fit": {
+   "a_ms_per_step": 4.158,
+   "T_events_per_s": "9.982e+10"
+  },
+  "assumptions": "streamed writes ~1 sim-s/event; accelerated turnover; protocol rates per arm (Hz) as in MIX; serial-dedicated node, packing is upside; seeds=3; driver-frozen before B2"
+ },
+ "sweep": [
+  {
+   "n": 1000000,
+   "k": 1000,
+   "steps": 200,
+   "elapsed_s": 1.364691381,
+   "backend": "torch-cuda-sharded (fp16 weights, nccl)"
+  },
+  {
+   "n": 2500000,
+   "k": 4000,
+   "steps": 200,
+   "elapsed_s": 7.02821471499999,
+   "backend": "torch-cuda-sharded (fp16 weights, nccl)"
+  },
+  {
+   "n": 5000000,
+   "k": 10000,
+   "steps": 200,
+   "elapsed_s": 31.37132086200006,
+   "backend": "torch-cuda-sharded (fp16 weights, nccl)"
+  }
+ ],
+ "rate_model": {
+  "a_ms_per_step": 4.158,
+  "T_events_per_s": 99821148591.02827,
+  "bench_drive_rate_hz": 305.0,
+  "note": "battery protocols run 0.5-5 Hz; wall/sim = 1000a + rate*n_syn/T"
+ },
+ "wall_s_per_sim_s_at_protocol_rates": {
+  "composite_5e10_at_3hz": 5.66,
+  "formation_1e10_at_3hz": 4.46,
+  "twin_1e9_at_2hz": 4.18
+ }
+}

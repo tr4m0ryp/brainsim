@@ -1,0 +1,32 @@
+{
+ "gate_passed": true,
+ "checks": [
+  {
+   "name": "sugar>baseline",
+   "expected": "MN9(sugar) > MN9(silent)",
+   "observed": "89.0 vs 0.0",
+   "pass": true
+  },
+  {
+   "name": "dose-response",
+   "expected": "MN9 rises with activation frequency",
+   "observed": "50Hz:18.3, 100Hz:64.0, 200Hz:89.0",
+   "pass": true
+  },
+  {
+   "name": "sugar>control",
+   "expected": "MN9(sugar) > MN9(random control)",
+   "observed": "64.0 vs 0.0",
+   "pass": true
+  }
+ ],
+ "conditions_run": [
+  "baseline",
+  "sugarR@50/100/200Hz",
+  "random-control@100Hz"
+ ],
+ "trials_per_condition": 3,
+ "code_version": "91bdd1e7dcf1",
+ "connectome_version": "v783",
+ "notes": "Headline sugar-GRN->MN9 gate reproduced via Shiu et al. model.py run_exp on their shipped v783 connectome. trials=3 (reduced from paper's 30 for CPU budget; qualitative direction checks only, per pre-registered gate)."
+}

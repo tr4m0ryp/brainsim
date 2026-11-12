@@ -1,0 +1,51 @@
+{
+ "a_ms_per_step": 3.622,
+ "T_events_per_s": 105307278142.22327,
+ "fast_path": true,
+ "points": [
+  {
+   "n": 2500000,
+   "k": 4000,
+   "steps": 50,
+   "elapsed_s": 1.2256705050000392,
+   "spikes": 27500258,
+   "backend": "torch-cuda-sharded (fp16 weights, nccl)"
+  },
+  {
+   "n": 5000000,
+   "k": 10000,
+   "steps": 50,
+   "elapsed_s": 5.404639762999977,
+   "spikes": 55007691,
+   "backend": "torch-cuda-sharded (fp16 weights, nccl)"
+  }
+ ],
+ "b1_baseline": {
+  "a_ms_per_step": 4.16,
+  "T_events_per_s": 99820000000.0
+ },
+ "wall_s_per_sim_s_at_protocol_rates": {
+  "composite_5e10_at_3hz": 5.05,
+  "twin_1e9_at_2hz": 3.64
+ },
+ "usd_per_battery_projection": {
+  "h1": {
+   "node_hours": 390.7,
+   "usd": 14065.0
+  },
+  "h2": {
+   "node_hours": 218.5,
+   "usd": 7864.0
+  },
+  "h3": {
+   "node_hours": 405.3,
+   "usd": 14592.0
+  },
+  "total_usd": 36521.0,
+  "fit": {
+   "a_ms_per_step": 3.622,
+   "T_events_per_s": "1.053e+11"
+  },
+  "assumptions": "streamed writes ~1 sim-s/event; accelerated turnover; protocol rates per arm (Hz) as in MIX; serial-dedicated node, packing is upside; seeds=3; driver-frozen before B2"
+ }
+}
