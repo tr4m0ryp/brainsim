@@ -1,0 +1,240 @@
+{
+  "about": "Every value plotted in docs/figures, copied from the result files shipped in results/ and never recomputed. Each block names its source file and JSON field. The loop diagram reads its neuron counts and in-degrees from the CompositeConfig defaults in src/brainsim/composite/full/config.py and its projections from edge_specs in src/brainsim/composite/full/build.py.",
+  "sources": {
+    "fly_arm": "results/h1/fly_arm.json (H1 fly arm, FlyWire v783 mushroom body, 5960 neurons, 801645 circuit synapses, 5 seeds, numpy rate model)",
+    "gate_brainsim": "results/fly-gate/brainsim/gate.json (whole-fly gate on the brainsim torch engine, CPU fp32, 138639 neurons, 15091983 connection pairs, 3 trials)",
+    "gate_shiu": "results/fly-gate/shiu-brian2/gate.json (reference gate, Shiu et al. model.py on Brian2, 3 trials; numbers are in the checks[].observed strings)",
+    "loop": "src/brainsim/composite/full/config.py CompositeConfig field defaults (full_scale) and src/brainsim/composite/full/build.py edge_specs"
+  },
+  "capacity": {
+    "source": "fly_arm",
+    "field": "arms.<arm>.C.mean and arms.<arm>.C.ci95",
+    "title": "Capacity on the fly mushroom body and its controls",
+    "rows": [
+      {
+        "arm": "measured",
+        "label": "measured wiring",
+        "mean": 0.22666666666666657,
+        "ci95": [
+          0.0,
+          0.6799999999999997
+        ],
+        "group": "measured wiring"
+      },
+      {
+        "arm": "measured_ffi_ko",
+        "label": "measured, APL inhibition off",
+        "mean": 0.22666666666666657,
+        "ci95": [
+          0.0,
+          0.6799999999999997
+        ],
+        "group": "measured wiring"
+      },
+      {
+        "arm": "weight_shuffle",
+        "label": "weights shuffled on measured edges",
+        "mean": 1.4399999999999995,
+        "ci95": [
+          0.2799999999999998,
+          2.8399999999999994
+        ],
+        "group": "control"
+      },
+      {
+        "arm": "config_shuffle",
+        "label": "degree-preserving shuffle",
+        "mean": 2.8661530939648583,
+        "ci95": [
+          2.2077627705627703,
+          3.5132558186911127
+        ],
+        "group": "control"
+      },
+      {
+        "arm": "erdos_renyi",
+        "label": "Erdos-Renyi, matched density",
+        "mean": 8.308316624895571,
+        "ci95": [
+          7.027602339181286,
+          9.813872180451128
+        ],
+        "group": "control"
+      },
+      {
+        "arm": "tf_attractor",
+        "label": "Tsodyks-Feigelman attractor, matched size",
+        "mean": 34.39914440571838,
+        "ci95": [
+          33.74379635681898,
+          35.222626841754995
+        ],
+        "group": "control"
+      }
+    ]
+  },
+  "ratio": {
+    "source": "fly_arm",
+    "field": "ratio_C_meas_over_C_shuf.{per_seed,mean,ci95}",
+    "title": "Capacity ratio, measured over degree-preserving shuffle",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "per_seed": [
+      0.4689537566456013,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "mean": 0.09379075132912026,
+    "ci95": [
+      0.0,
+      0.28137225398736077
+    ],
+    "cohens_d": -3.873748298955306,
+    "kill_band": [
+      0.95,
+      1.05
+    ],
+    "claim_bar": 1.1,
+    "bands_source": "src/brainsim/batteries/verdicts.py h1_verdict (frozen contract thresholds)"
+  },
+  "gate": {
+    "title": "Whole-fly gate: MN9 spikes per 1 s trial, mean of 3 trials",
+    "conditions": [
+      "silent",
+      "sugar 50 Hz",
+      "sugar 100 Hz",
+      "sugar 200 Hz",
+      "random set 100 Hz"
+    ],
+    "brainsim": {
+      "source": "gate_brainsim",
+      "field": "results.{baseline,sugar@50,sugar@100,sugar@200,control@100}.mn9_mean",
+      "values": [
+        0.0,
+        59.666666666666664,
+        88.0,
+        169.33333333333334,
+        0.0
+      ]
+    },
+    "shiu": {
+      "source": "gate_shiu",
+      "field": "checks[].observed: sugar>baseline '89.0 vs 0.0', dose-response '50Hz:18.3, 100Hz:64.0, 200Hz:89.0', sugar>control '64.0 vs 0.0'",
+      "values": [
+        0.0,
+        18.3,
+        64.0,
+        89.0,
+        0.0
+      ]
+    }
+  },
+  "loop": {
+    "source": "loop",
+    "title": "The hippocampal loop as built by CompositeConfig.full_scale()",
+    "stages": [
+      {
+        "stage": "input",
+        "label": "EC-II input",
+        "n": 24000
+      },
+      {
+        "stage": "separation",
+        "label": "DG granule (separation)",
+        "n": 300000
+      },
+      {
+        "stage": "formation",
+        "label": "CA3 pyramidal (formation)",
+        "n": 110000
+      },
+      {
+        "stage": "output",
+        "label": "CA1 pyramidal (output)",
+        "n": 311500
+      },
+      {
+        "stage": "relay",
+        "label": "relay",
+        "n": 30000
+      },
+      {
+        "stage": "storage",
+        "label": "cortical store (H01 statistics)",
+        "n": 1000000
+      }
+    ],
+    "edges": [
+      {
+        "name": "sep_in",
+        "pre": "input",
+        "post": "separation",
+        "k": 4000,
+        "plastic": null
+      },
+      {
+        "name": "form_in",
+        "pre": "separation",
+        "post": "formation",
+        "k": 50,
+        "plastic": null
+      },
+      {
+        "name": "form_direct",
+        "pre": "input",
+        "post": "formation",
+        "k": 4000,
+        "plastic": null
+      },
+      {
+        "name": "form_rec",
+        "pre": "formation",
+        "post": "formation",
+        "k": 11000,
+        "plastic": "btsp"
+      },
+      {
+        "name": "out_in",
+        "pre": "formation",
+        "post": "output",
+        "k": 30000,
+        "plastic": null
+      },
+      {
+        "name": "relay_in",
+        "pre": "output",
+        "post": "relay",
+        "k": 100,
+        "plastic": "mb"
+      },
+      {
+        "name": "store_in",
+        "pre": "relay",
+        "post": "storage",
+        "k": 100,
+        "plastic": null
+      },
+      {
+        "name": "store_rec",
+        "pre": "storage",
+        "post": "storage",
+        "k": 10000,
+        "plastic": "cascade"
+      }
+    ],
+    "forecast": {
+      "field": "build.forecast(CompositeConfig.full_scale(), world_size=8)",
+      "n_neurons": 1775500,
+      "n_synapses": 22553500000,
+      "bytes_per_rank": 41399353184,
+      "bytes_per_synapse": 14.684852704546966
+    }
+  }
+}
