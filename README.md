@@ -109,7 +109,7 @@ and a coincident dopamine signal $`d`$ depresses the KC to output synapse:
 ```math
 e_j \leftarrow \begin{cases} 1 & s_j = 1 \\ e_j\, e^{-\Delta t/\tau_e} & \text{otherwise} \end{cases}
 \qquad
-w_{ij} \leftarrow \operatorname{clip}\Big(w_{ij} - \alpha\, \frac{e_j\, d_i}{\tau_W}\,\Delta t,\;\; \beta,\;\; w_{\max}\Big)
+w_{ij} \leftarrow \mathrm{clip}\Big(w_{ij} - \alpha\, \frac{e_j\, d_i}{\tau_W}\,\Delta t,\;\; \beta,\;\; w_{\max}\Big)
 ```
 
 with $`\alpha = 1`$, $`\tau_W = 5`$ s, $`\tau_e = 200`$ ms,
@@ -176,7 +176,7 @@ through the measured counts $`W_{PK}`$. The KC code is the top $`K`$ of the
 drive, re-ranked by the measured APL feedback loop:
 
 ```math
-h = x\,W_{PK}, \quad y_0 = \operatorname{top}_K(h), \quad u = (y_0 W_{KA})\, W_{AK}^{\top}, \quad g = \gamma\,\frac{\overline{h}}{\overline{u}}, \quad y = \operatorname{top}_K\big(h - g\,u\big)
+h = x\,W_{PK}, \quad y_0 = \mathrm{top}_K(h), \quad u = (y_0 W_{KA})\, W_{AK}^{\top}, \quad g = \gamma\,\frac{\overline{h}}{\overline{u}}, \quad y = \mathrm{top}_K\big(h - g\,u\big)
 ```
 
 with $`K = \mathrm{round}(f_{KC}\, n_{KC})`$, $`f_{KC} = 0.05`$, and
@@ -190,7 +190,7 @@ Holding a 100 ms presentation with $`e_j = 1`$ and $`d_i = 1`$ in the MB rule
 gives a closed form, tested step for step against the rule:
 
 ```math
-w_{ij} \leftarrow \operatorname{clip}\big(w_{ij} - \Delta w,\; 0,\; w_{\max}\big) \quad \text{for } y_j = 1,\; i \in z, \qquad \Delta w = \frac{\alpha\, T\, \Delta t}{\tau_W} = \frac{100}{5000} = 0.02 = 0.4\, w_{\max}
+w_{ij} \leftarrow \mathrm{clip}\big(w_{ij} - \Delta w,\; 0,\; w_{\max}\big) \quad \text{for } y_j = 1,\; i \in z, \qquad \Delta w = \frac{\alpha\, T\, \Delta t}{\tau_W} = \frac{100}{5000} = 0.02 = 0.4\, w_{\max}
 ```
 
 **Recall.** A cue keeps a random half of the item's active PNs and adds
@@ -198,7 +198,7 @@ nothing. With $`M`$ the anatomical KC to MBON counts, the response of each MBON
 is compared with the untrained circuit:
 
 ```math
-m = y_{\mathrm{cue}}\,(M \odot W), \qquad m^0 = w_{\max}\, y_{\mathrm{cue}} M, \qquad \sigma_i = 1 - \frac{m_i}{m^0_i}, \qquad \mathrm{overlap} = \frac{|\operatorname{top}_{|z|}(\sigma) \cap z|}{|z|}
+m = y_{\mathrm{cue}}\,(M \odot W), \qquad m^0 = w_{\max}\, y_{\mathrm{cue}} M, \qquad \sigma_i = 1 - \frac{m_i}{m^0_i}, \qquad \mathrm{overlap} = \frac{|\mathrm{top}_{|z|}(\sigma) \cap z|}{|z|}
 ```
 
 ### Capacity and the capacity ratio
