@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+*.egg-info/
+.venv*/
+.pytest_cache/
+build/
+dist/
+# Downloaded datasets and caches; only the H01 statistics tables ship.
+data/*
+!data/connectomes/
+data/connectomes/*
+!data/connectomes/h01/
+data/connectomes/h01/*
+!data/connectomes/h01/stats/
+data/connectomes/h01/stats/*
+!data/connectomes/h01/stats/connection_stats.json
+!data/connectomes/h01/stats/histograms.json

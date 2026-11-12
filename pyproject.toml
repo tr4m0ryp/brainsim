@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "brainsim"
+version = "0.1.0"
+description = "A simulator for memory circuits on connectome wiring"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.11"
+# Exact pins: a reported number must be reproducible from the manifest alone.
+# These are the versions the shipped results were produced with.
+dependencies = [
+    "numpy==1.26.4",
+    "scipy==1.17.1",
+    "torch==2.2.2",
+]
+
+[project.optional-dependencies]
+test = ["pytest==9.1.1"]
+# FlyWire feather and Shiu parquet conversion into the .npy caches.
+flywire = ["pyarrow==25.0.0"]
+# Reference gate: Shiu et al.'s own Brian2 model, run in a subprocess.
+shiu = ["brian2==2.10.1", "pandas==3.0.5", "pyarrow==25.0.0"]
+# Figures are derived artifacts, never inputs to a measurement.
+figures = ["matplotlib==3.9.4"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--import-mode=importlib"
