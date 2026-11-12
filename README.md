@@ -508,8 +508,10 @@ python scripts/gates/fly_gate_brainsim.py
 
 Re-run from this repository on 2026-11-12, in 64.9 s: gate passed with the
 same MN9 counts per trial and the same network spike counts in every
-condition. The reference gate on Shiu et al.'s Brian2 model
-is `python scripts/gates/fly_gate_shiu.py` with the `shiu` extra.
+condition. The reference gate on Shiu et al.'s Brian2 model is
+`python scripts/gates/fly_gate_shiu.py` with the `shiu` extra (Brian2 2.10.1);
+re-run on 2026-11-12 in about 18 minutes, it passed with the same MN9 means
+(0.0; 18.3, 64.0, 89.0; 0.0).
 
 **H01 statistics** (streams about 159 GB of the public export and keeps the
 aggregates): `python scripts/data/h01_stats.py stream` then
