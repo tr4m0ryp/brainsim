@@ -1,0 +1,79 @@
+brainsim
+A simulator for memory circuits on connectome wiring, part of the MemBrain
+research programme.
+
+Copyright (c) 2026 Keygraph, Inc.
+
+Required Notice: Copyright (c) 2026 Keygraph, Inc.
+Required Notice: brainsim, https://github.com/tr4m0ryp/brainsim
+
+Licensed under the PolyForm Noncommercial License 1.0.0 (see LICENSE). This is a
+source-available licence, not an OSI open-source licence.
+
+ATTRIBUTION
+
+Anyone who receives any part of this software must also receive a copy of the
+licence terms, or the URL for them, together with every plain-text line above
+that begins with "Required Notice:". Work that uses or builds on this software
+must credit "brainsim by Keygraph, Inc."
+
+PERMITTED USE
+
+Any noncommercial purpose is permitted, including academic research, teaching,
+personal study, and use by charitable, educational, public-research, public
+safety or health, environmental, and government organisations.
+
+Selling this software, bundling it into a paid product, or operating it as a
+paid or hosted service requires a commercial licence.
+
+COMMERCIAL LICENSING
+
+For a commercial licence, open an issue at
+https://github.com/tr4m0ryp/brainsim/issues and a maintainer will reply.
+
+THIRD-PARTY SOFTWARE
+
+Drosophila_brain_model (https://github.com/philshiu/Drosophila_brain_model),
+MIT License, Copyright (c) 2023 Philip Shiu and Nico Spiller.
+  No file of it is redistributed here. scripts/data/fetch_shiu_model.sh clones
+  it at commit 91bdd1e7dcf193f3e7ca5a8933497fcef63b7960 into the local data
+  directory, and scripts/gates/fly_gate_shiu.py runs its model.py unchanged.
+  The neuron constants of brainsim's LIF defaults and of the whole-fly gate
+  (src/brainsim/engine/lif.py, src/brainsim/validate/whole_fly/mapping.py)
+  are taken from that model and from Shiu et al., Nature 634, 210-219 (2024),
+  doi:10.1038/s41586-024-07763-9. No MIT-licensed source code is copied into
+  this repository.
+
+THIRD-PARTY DATA
+
+H01 human temporal cortex release (Shapson-Coe et al., Science 384, eadk4858
+(2024), doi:10.1126/science.adk4858), CC BY 4.0.
+  data/connectomes/h01/stats/connection_stats.json and histograms.json are
+  aggregate statistics derived from the c3 synapse export in gs://h01-release
+  by scripts/data/h01_stats.py. They are redistributed under CC BY 4.0 with
+  this attribution; no synapse-level H01 data is included.
+
+FlyWire whole-brain connectome, materialization 783 (Dorkenwald et al.,
+Nature 634, 124-138 (2024), doi:10.1038/s41586-024-07558-y; Schlegel et al.,
+Nature (2024), doi:10.1038/s41586-024-07686-5). Zenodo record 10676866 states
+CC BY 4.0; flywire.ai states CC BY-NC 4.0 for the public release, and the
+stricter terms are followed here.
+  No connectivity table is redistributed. The result files under results/
+  contain neuron and synapse counts per cell class of the mushroom-body
+  subgraph and the SHA-256 of the downloaded files.
+
+The FlyWire cell-type annotations (flyconnectome/flywire_annotations, tag
+v2.1.0) carry no licence file. They are downloaded for local use by
+scripts/data/fetch_flywire.py and not redistributed.
+
+TRADEMARKS
+
+"Keygraph" and the Keygraph logo are trademarks of Keygraph, Inc. The licence
+grants no trademark rights, and no permission is given to use the name to
+endorse or promote derived work.
+
+NO WARRANTY
+
+As far as the law allows, this software comes as is, without any warranty or
+condition, and the licensor is not liable for any damages arising out of the
+licence terms or the use or nature of the software.
