@@ -579,12 +579,17 @@ protocol, its measured wiring held less than its own shuffles.
 
 ## License
 
-brainsim is **source-available**, licensed under the [PolyForm Noncommercial
-License 1.0.0](./LICENSE), **not** an OSI open-source license.
+Licensed under the [Apache License 2.0](./LICENSE). Commercial use, modification
+and distribution are allowed. Keep the copyright notice and the
+[`NOTICE`](./NOTICE) file when you redistribute. See [`LICENSE`](./LICENSE) and
+[`NOTICE`](./NOTICE) for the full terms.
 
-- **You may** use, modify, fork, and share brainsim freely for any **noncommercial** purpose, as long as you keep the copyright and `Required Notice:` lines (see [`NOTICE`](./NOTICE)) and credit *"brainsim by Keygraph, Inc."*
-- **You may not** sell it, bundle it into a paid product, or run it as a paid/hosted service **without a commercial license**.
+The Apache-2.0 licence covers the code and the files authored in this
+repository. Third-party data keeps its own terms. FlyWire data, which the
+download scripts fetch, is governed by FlyWire's own terms, which on flywire.ai
+are CC BY-NC 4.0, so commercial use of that data needs FlyWire's permission.
+The result files derived from FlyWire data are listed in
+[`NOTICE`](./NOTICE) and are covered by FlyWire's terms, not by Apache-2.0. The
+shipped H01 aggregate tables remain under CC BY 4.0 with attribution.
 
-Copyright (c) 2026 Keygraph, Inc. Commercial licensing enquiries: open an issue
-at https://github.com/tr4m0ryp/brainsim/issues. Third-party software and data
-terms are listed in [`NOTICE`](./NOTICE).
+Copyright (c) 2026 Keygraph, Inc.
